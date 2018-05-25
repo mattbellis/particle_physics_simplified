@@ -10,6 +10,8 @@ An unvarified source claims the VMs run on Google's servers via Colab have rough
 
 We used Jekyll to create a local version of the website in order to play around with formatting and aesthetics. We found out that this can be done through Notepad on Windows, and XCode on a Mac
 
+We used Bootstrap codes to make the site more user friendly and aesthetically pleasing
+
 ## Comments from Dr. Breimer about jekyll site
 
 ```html
