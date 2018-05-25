@@ -8,7 +8,7 @@ We found out that idle VMs on Colab time out after 90 minutes, and the max lifet
 An unvarified source claims the VMs run on Google's servers via Colab have roughly 13GB of RAM.
 
 
-We used Jekyll to create a local version of the website in order to play around with formatting and aesthetics. We found out that this can be done through Notepad
+We used Jekyll to create a local version of the website in order to play around with formatting and aesthetics. We found out that this can be done through Notepad on Windows, and XCode on a Mac
 
 ## Comments from Dr. Breimer about jekyll site
 
