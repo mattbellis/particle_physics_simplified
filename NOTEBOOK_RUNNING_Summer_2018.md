@@ -38,5 +38,5 @@ I put each category in a card and the activities are list inside the card, but i
 </div>
 ```
 
-## Week 2 (5/28/18-6/1/18)
+# Week 2 (5/28/18-6/1/18)
 
