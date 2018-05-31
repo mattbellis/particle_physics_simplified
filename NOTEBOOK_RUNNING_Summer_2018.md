@@ -39,4 +39,4 @@ I put each category in a card and the activities are list inside the card, but i
 ```
 
 # Week 2 (5/28/18-6/1/18)
-
+We found out that Colab works in Google Chrome, Firefox, and Safari, but not in Internet Explorer or Microsoft Edge
