@@ -40,3 +40,5 @@ I put each category in a card and the activities are list inside the card, but i
 
 # Week 2 (5/28/18-6/1/18)
 We found out that Colab works in Google Chrome, Firefox, and Safari, but not in Internet Explorer or Microsoft Edge
+
+We learned how to embed YouTube videos into the website. This will be useful because we recorded tutorial videos which we plan to upload on YouTube and embed those links to help users interact with Colab, the data, and experiment tools.
