@@ -22,10 +22,19 @@ def get_collisions(infile,verbose=False,experiment='CMS'):
 
     nevents = data['nevents']
 
-    groups = [['jets',['e','px','py','pz','btag']], 
-              ['muons',['e','px','py','pz','q']],
-              ['electrons',['e','px','py','pz','q']],
-              ['photons',['e','px','py','pz']] ]
+    if experiment.lower() == 'cms':
+        groups = [['jets',['e','px','py','pz','btag']], 
+                  ['muons',['e','px','py','pz','q']],
+                  ['electrons',['e','px','py','pz','q']],
+                  ['photons',['e','px','py','pz']] ]
+    elif experiment.lower() == 'babar':
+        groups = [['pions',['e','px','py','pz','q','beta','dedx']], 
+                  ['kaons',['e','px','py','pz','q','beta','dedx']], 
+                  ['kaons',['e','px','py','pz','q','beta','dedx']], 
+                  ['muons',['e','px','py','pz','q','beta','dedx']],
+                  ['electrons',['e','px','py','pz','q','beta','dedx']],
+                  ['photons',['e','px','py','pz']] ]
+
 
     for i in range(0,nevents):
 
@@ -51,8 +60,10 @@ def get_collisions(infile,verbose=False,experiment='CMS'):
 
                 collision[gname].append(particle)
 
-        collision['METx'] = event['METx']
-        collision['METy'] = event['METy']
+        if experiment.lower() == 'cms':
+            collision['METx'] = event['METx']
+            collision['METy'] = event['METy']
+
         collisions.append(collision)
 
     return collisions
