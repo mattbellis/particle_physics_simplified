@@ -90,6 +90,7 @@ def get_collision(alldata,entry_number=0,verbose=False,experiment='CMS'):
 
     data,event = alldata[0],alldata[1]
 
+    groups = None
     if experiment.lower() == 'cms':
         groups = [['jets',['e','px','py','pz','btag']], 
                   ['muons',['e','px','py','pz','q']],
@@ -102,6 +103,15 @@ def get_collision(alldata,entry_number=0,verbose=False,experiment='CMS'):
                   ['muons',['e','px','py','pz','q','beta','dedx']],
                   ['electrons',['e','px','py','pz','q','beta','dedx']],
                   ['photons',['e','px','py','pz']] ]
+    elif experiment.lower() == 'cleo':
+        groups =  [ ['pions',['e','px','py','pz','q','sigpi','sigka','likpi','likka','nphopi','nphoka','depthmu','cluster_energy'] ],
+                    ['kaons',['e','px','py','pz','q','sigpi','sigka','likpi','likka','nphopi','nphoka','depthmu','cluster_energy'] ],
+                    ['muons',['e','px','py','pz','q','sigpi','sigka','likpi','likka','nphopi','nphoka','depthmu','cluster_energy'] ],
+                    ['electrons',['e','px','py','pz','q','sigpi','sigka','likpi','likka','nphopi','nphoka','depthmu','cluster_energy'] ],
+                    ['photons',['e','px','py','pz']] ]
+    else:
+        print("\nThe experiment {0} is not recognized\n".format(experiment))
+        exit()
 
 
     h5hep.unpack(event,data,n=entry_number)
