@@ -69,6 +69,67 @@ def get_collisions(infile,verbose=False,experiment='CMS'):
     return collisions
 
 ################################################################################
+def get_number_of_entries(alldata):
+
+    nentries = alldata[0]['nevents'] # We assume passing in an ntuple/list of data/event
+
+    return nentries
+
+################################################################################
+def get_all_data(infile,verbose=False):
+
+    print("\nLoading in the data...\n")
+
+    data,event = h5hep.hd5events(infile, verbose=verbose)
+
+    return [data,event]
+
+################################################################################
+################################################################################
+def get_collision(alldata,entry_number=0,verbose=False,experiment='CMS'):
+
+    data,event = alldata[0],alldata[1]
+
+    if experiment.lower() == 'cms':
+        groups = [['jets',['e','px','py','pz','btag']], 
+                  ['muons',['e','px','py','pz','q']],
+                  ['electrons',['e','px','py','pz','q']],
+                  ['photons',['e','px','py','pz']] ]
+    elif experiment.lower() == 'babar':
+        groups = [['pions',['e','px','py','pz','q','beta','dedx']], 
+                  ['kaons',['e','px','py','pz','q','beta','dedx']], 
+                  ['kaons',['e','px','py','pz','q','beta','dedx']], 
+                  ['muons',['e','px','py','pz','q','beta','dedx']],
+                  ['electrons',['e','px','py','pz','q','beta','dedx']],
+                  ['photons',['e','px','py','pz']] ]
+
+
+    h5hep.unpack(event,data,n=entry_number)
+
+    collision = {}
+
+    for group in groups:
+        gname = group[0]
+        gvars = group[1]
+        collision[gname] = []
+        key = "%s/n%s" % (gname, gname)
+        ngroup = event[key]
+        for j in range(ngroup):
+            particle = {}
+            for var in gvars:
+                event_key = '%s/%s' % (gname,var)
+                particle[var] = event[event_key][j]
+
+            collision[gname].append(particle)
+
+    if experiment.lower() == 'cms':
+        collision['METx'] = event['METx']
+        collision['METy'] = event['METy']
+
+    return collision
+
+################################################################################
+################################################################################
 ################################################################################
 def draw_jet(origin=(0,0),angle=90,length=0.5,opening_angle=20,ntracks=5,show_tracks=False):
 
