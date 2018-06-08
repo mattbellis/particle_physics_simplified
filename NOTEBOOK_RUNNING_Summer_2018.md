@@ -45,4 +45,6 @@ We learned how to embed YouTube videos into the website. This will be useful bec
 
 
 # Week 3 (6/4/18-6/8/18)
-We began working with HDF5 to interface with CMS, CLEO, and BaBar data
+We began working with HDF5 to interface with CMS, CLEO, and BaBar data.
+
+We recorded a video tutorial on how to use Google Colab, uploaded it to YouTube, and embedded the video onto the site
