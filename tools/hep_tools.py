@@ -29,8 +29,9 @@ def get_collisions(infile,verbose=False,experiment='CMS'):
 
     for i in range(0,nevents):
 
-        if verbose:
-            if i%1000==0:
+        #if verbose:
+        if 1:
+            if i%10000==0:
                 print("Reading in event ",i)
 
         h5hep.unpack(event,data,n=i)
