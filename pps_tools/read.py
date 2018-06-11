@@ -18,7 +18,7 @@ def get_collisions(infile,verbose=False,experiment='CMS'):
 
     collisions = []
 
-    data,event = h5hep.hd5events(infile, verbose=verbose)
+    data,event = h5hep.load(infile, verbose=verbose)
 
     nevents = data['nevents']
 
@@ -80,7 +80,7 @@ def get_all_data(infile,verbose=False):
 
     print("\nLoading in the data...\n")
 
-    data,event = h5hep.hd5events(infile, verbose=verbose)
+    data,event = h5hep.load(infile, verbose=verbose)
 
     return [data,event]
 
