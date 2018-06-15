@@ -55,3 +55,5 @@ We finished recording video tutorials for the website, uploaded them to YouTube,
 We also updated the activities on the website with the latest version of the h5hep wrapper
 
 There is also a tentative D meson reconstruction activity in the Google Drive folder for Particle Physics Playground that has not yet been added to the website. It is still a work in progress
+
+Added contact chips for the individual contributors to the website
