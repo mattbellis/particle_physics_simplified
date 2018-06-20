@@ -48,3 +48,12 @@ We learned how to embed YouTube videos into the website. This will be useful bec
 We began working with HDF5 to interface with CMS, CLEO, and BaBar data.
 
 We recorded a video tutorial on how to use Google Colab, uploaded it to YouTube, and embedded the video onto the site
+
+# Week 4 (6/11/18-6/15/18)
+We finished recording video tutorials for the website, uploaded them to YouTube, and then embedded them to the website.
+
+We also updated the activities on the website with the latest version of the h5hep wrapper
+
+There is also a tentative D meson reconstruction activity in the Google Drive folder for Particle Physics Playground that has not yet been added to the website. It is still a work in progress
+
+Added contact chips for the individual contributors to the website
