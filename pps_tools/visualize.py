@@ -166,28 +166,32 @@ def display_collision3D(collision,fig=None,ax=None,color_blind=False):
     Tphotons = collision['photons']
     TMETx,TMETy = collision['METx'],collision['METy']
 
-    jets = []
-    for jet in Tjets:
-        jets.append([jet['px'], jet['py'], jet['pz']])
+    objects = [Tjets, Tmuons, Telectrons, Tphotons]
+    new_objects = [[], [], [], []]
 
-    print(jets)
+    #jets = []
+    for obj,newobj in zip(objects, new_objects):
+        for ob in obj:
+            newobj.append([ob['px'], ob['py'], ob['pz']])
+
+    #print(jets)
 
     lines = draw_beams()
     if(color_blind == False):
-        pmom = np.array(jets)#.transpose()[1:4].transpose()
-        origin = np.zeros((len(jets),3))
+        pmom = np.array(new_objects[0])#.transpose()[1:4].transpose()
+        origin = np.zeros((len(new_objects[0]),3))
         lines += draw_jet3D(origin=origin,pmom=pmom)
 
-        pmom = np.array(muons).transpose()[1:4].transpose()
-        origin = np.zeros((len(muons),3))
+        pmom = np.array(new_objects[1])#.transpose()[1:4].transpose()
+        origin = np.zeros((len(new_objects[1]),3))
         lines += draw_muon3D(origin=origin,pmom=pmom)
 
-        pmom = np.array(electrons).transpose()[1:4].transpose()
-        origin = np.zeros((len(electrons),3))
+        pmom = np.array(new_objects[2])#.transpose()[1:4].transpose()
+        origin = np.zeros((len(new_objects[2]),3))
         lines += draw_electron3D(origin=origin,pmom=pmom)
 
-        pmom = np.array(photons).transpose()[1:4].transpose()
-        origin = np.zeros((len(photons),3))
+        pmom = np.array(new_objects[3])#.transpose()[1:4].transpose()
+        origin = np.zeros((len(new_objects[3]),3))
         lines += draw_photon3D(origin=origin,pmom=pmom)
     if(color_blind == True):
         pmom = np.array(jets).transpose()[1:4].transpose()

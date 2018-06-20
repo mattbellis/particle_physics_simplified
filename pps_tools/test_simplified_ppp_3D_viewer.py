@@ -20,7 +20,7 @@ entry = 0
 collision = hep.get_collision(alldata,entry_number=entry,experiment='CMS')
 
 
-plt.figure()
+#plt.figure()
 hep.display_collision3D(collision)
 
 plt.show()
