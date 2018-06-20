@@ -3,7 +3,7 @@ import matplotlib.pylab as plt
 
 import sys
 
-import hep_tools as hep
+import pps_tools as hep
 
 infile = sys.argv[1]
 
@@ -23,6 +23,8 @@ for entry in range(nentries):
         print(entry)
 
     jets = collision['jets']
+    photons = collision['photons']
+    print(len(photons))
     
     for jet in jets:
         e = jet['e']
