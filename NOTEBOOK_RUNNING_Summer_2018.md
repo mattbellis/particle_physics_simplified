@@ -57,3 +57,8 @@ We also updated the activities on the website with the latest version of the h5h
 There is also a tentative D meson reconstruction activity in the Google Drive folder for Particle Physics Playground that has not yet been added to the website. It is still a work in progress
 
 Added contact chips for the individual contributors to the website
+
+# Week 5 (6/18/18-6/22/18)
+Went live with the new design of the website
+
+Checked the Colab activities to make sure they work; ran into errors with h5hep in the CMS muon and dimuon activities
