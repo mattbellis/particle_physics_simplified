@@ -62,3 +62,5 @@ Added contact chips for the individual contributors to the website
 Went live with the new design of the website
 
 Checked the Colab activities to make sure they work; ran into errors with h5hep in the CMS muon and dimuon activities
+
+Began work on answer keys for the activities
