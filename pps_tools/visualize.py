@@ -159,56 +159,56 @@ def display_collision3D(collision,fig=None,ax=None,color_blind=False):
         ax = fig.gca(projection='3d')
         plt.subplots_adjust(top=0.98,bottom=0.02,right=0.98,left=0.02)
 
-    #jets,muons,electrons,photons,met = collision
-    Tjets = collision['jets']
-    Tmuons = collision['muons']
-    Telectrons = collision['electrons']
-    Tphotons = collision['photons']
-    TMETx,TMETy = collision['METx'],collision['METy']
+    # Need to pull out just the momentum for each. 
+    orgjets = collision['jets']
+    orgmuons = collision['muons']
+    orgelectrons = collision['electrons']
+    orgphotons = collision['photons']
+    orgMETx,orgMETy = collision['METx'],collision['METy']
 
-    objects = [Tjets, Tmuons, Telectrons, Tphotons]
-    new_objects = [[], [], [], []]
+    objects = [orgjets, orgmuons, orgelectrons, orgphotons]
+
+    new_objects = {}
+    new_objects['jets'] = {'colorblind_color':'gray','colorblind_ls':'solid','p':[]}
+    new_objects['muons'] = {'colorblind_color':'black','colorblind_ls':'dashed','p':[]}
+    new_objects['electrons'] = {'colorblind_color':'gray','colorblind_ls':'dashed','p':[]}
+    new_objects['photons'] = {'colorblind_color':'black','colorblind_ls':'solid','p':[]}
+
 
     #jets = []
-    for obj,newobj in zip(objects, new_objects):
+    for obj,key in zip(objects, new_objects.keys()):
         for ob in obj:
-            newobj.append([ob['px'], ob['py'], ob['pz']])
+            new_objects[key]['p'].append([ob['px'], ob['py'], ob['pz']])
 
     #print(jets)
 
     lines = draw_beams()
-    if(color_blind == False):
-        pmom = np.array(new_objects[0])#.transpose()[1:4].transpose()
-        origin = np.zeros((len(new_objects[0]),3))
-        lines += draw_jet3D(origin=origin,pmom=pmom)
 
-        pmom = np.array(new_objects[1])#.transpose()[1:4].transpose()
-        origin = np.zeros((len(new_objects[1]),3))
-        lines += draw_muon3D(origin=origin,pmom=pmom)
+    for key in new_objects.keys():
+        pmom = new_objects[key]['p']
+        origin = np.zeros((len(new_objects[key]),3))
 
-        pmom = np.array(new_objects[2])#.transpose()[1:4].transpose()
-        origin = np.zeros((len(new_objects[2]),3))
-        lines += draw_electron3D(origin=origin,pmom=pmom)
+        if(color_blind == False):
+            if key=='jets':
+                lines += draw_jet3D(origin=origin,pmom=pmom)
+            elif key=='muons':
+                lines += draw_muon3D(origin=origin,pmom=pmom)
+            elif key=='electrons':
+                lines += draw_electron3D(origin=origin,pmom=pmom)
+            elif key=='photons':
+                lines += draw_photon3D(origin=origin,pmom=pmom)
+        else:
+            ls = new_objects[key]['colorblind_ls']
+            cb_color = new_objects[key]['colorblind_color']
+            if key=='jets':
+                lines += draw_jet3D(origin=origin,pmom=pmom,ls=ls,color=cb_color)
+            elif key=='muons':
+                lines += draw_muon3D(origin=origin,pmom=pmom,ls=ls,color=cb_color)
+            elif key=='electrons':
+                lines += draw_electron3D(origin=origin,pmom=pmom,ls=ls,color=cb_color)
+            elif key=='photons':
+                lines += draw_photon3D(origin=origin,pmom=pmom,ls=ls,color=cb_color)
 
-        pmom = np.array(new_objects[3])#.transpose()[1:4].transpose()
-        origin = np.zeros((len(new_objects[3]),3))
-        lines += draw_photon3D(origin=origin,pmom=pmom)
-    if(color_blind == True):
-        pmom = np.array(jets).transpose()[1:4].transpose()
-        origin = np.zeros((len(jets),3))
-        lines += draw_jet3D(origin=origin,pmom=pmom,ls='solid',color='gray')
-
-        pmom = np.array(muons).transpose()[1:4].transpose()
-        origin = np.zeros((len(muons),3))
-        lines += draw_muon3D(origin=origin,pmom=pmom,ls='dashed',color='black')
-
-        pmom = np.array(electrons).transpose()[1:4].transpose()
-        origin = np.zeros((len(electrons),3))
-        lines += draw_electron3D(origin=origin,pmom=pmom,ls='dashed',color='gray')
-
-        pmom = np.array(photons).transpose()[1:4].transpose()
-        origin = np.zeros((len(photons),3))
-        lines += draw_photon3D(origin=origin,pmom=pmom,ls='solid',color='black')
 
     for l in lines:
         ax.add_line(l)
