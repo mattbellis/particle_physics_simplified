@@ -80,9 +80,9 @@ def draw_line3D(origin=[(0,0,0)],pmom=[(1,1,1)],color='red',lw=2.0,ls='solid'):
 
 ################################################################################
 ################################################################################
-def draw_beams():
+def draw_beams(pmom=[(0,0,-200.0),(0,0,200.0)]):
 
-    lines = draw_line3D(origin=[(0,0,-0.1),(0,0,0.1)],pmom=[(0,0,-200.0),(0,0,200.0)],color='red',lw=1)
+    lines = draw_line3D(origin=[(0,0,-0.1),(0,0,0.1)],pmom=pmom,color='red',lw=1)
 
     return lines
 
@@ -121,6 +121,33 @@ def draw_jet3D(origin=[(0,0,0)],pmom=[(1,1,1)],ls='solid',color='orange'):
 
 ################################################################################
 ################################################################################
+def draw_pion3D(origin=[(0,0,0)],pmom=[(1,1,1)],ls='solid',color='red'):
+    
+    lines = draw_line3D(origin=origin,pmom=pmom,color=color,lw=2,ls=ls)
+    ##lines += draw_line3D(origin=origin,pmom=pmom,color='gray',lw=.25,ls='solid')
+
+    return lines
+
+################################################################################
+################################################################################
+def draw_kaon3D(origin=[(0,0,0)],pmom=[(1,1,1)],ls='solid',color='red'):
+    
+    lines = draw_line3D(origin=origin,pmom=pmom,color=color,lw=5,ls=ls)
+    ##lines += draw_line3D(origin=origin,pmom=pmom,color='gray',lw=.25,ls='solid')
+
+    return lines
+
+################################################################################
+################################################################################
+def draw_proton3D(origin=[(0,0,0)],pmom=[(1,1,1)],ls='solid',color='red'):
+    
+    lines = draw_line3D(origin=origin,pmom=pmom,color=color,lw=9,ls=ls)
+    ##lines += draw_line3D(origin=origin,pmom=pmom,color='gray',lw=.25,ls='solid')
+
+    return lines
+
+################################################################################
+################################################################################
 def draw_muon3D(origin=[(0,0,0)],pmom=[(1,1,1)],ls='solid',color='blue'):
     
     lines = draw_line3D(origin=origin,pmom=pmom,color=color,lw=5,ls=ls)
@@ -149,7 +176,7 @@ def draw_photon3D(origin=[(0,0,0)],pmom=[(1,1,1)],ls='solid',color='gray'):
 
 ################################################################################
 ################################################################################
-def display_collision3D(collision,fig=None,ax=None,color_blind=False):
+def display_collision3D(collision,fig=None,ax=None,color_blind=False,experiment='CMS'):
 
     if fig is None:
         fig = plt.figure(figsize=(6,4),dpi=100)
@@ -159,21 +186,41 @@ def display_collision3D(collision,fig=None,ax=None,color_blind=False):
         ax = fig.gca(projection='3d')
         plt.subplots_adjust(top=0.98,bottom=0.02,right=0.98,left=0.02)
 
-    # Need to pull out just the momentum for each. 
-    orgjets = collision['jets']
-    orgmuons = collision['muons']
-    orgelectrons = collision['electrons']
-    orgphotons = collision['photons']
-    orgMETx,orgMETy = collision['METx'],collision['METy']
+    new_objects = None
+    if experiment.lower()=='cms':
+        # Need to pull out just the momentum for each. 
+        orgjets = collision['jets']
+        orgmuons = collision['muons']
+        orgelectrons = collision['electrons']
+        orgphotons = collision['photons']
+        orgMETx,orgMETy = collision['METx'],collision['METy']
 
-    objects = [orgjets, orgmuons, orgelectrons, orgphotons]
+        objects = [orgjets, orgmuons, orgelectrons, orgphotons]
 
-    new_objects = {}
-    new_objects['jets'] = {'colorblind_color':'gray','colorblind_ls':'solid','p':[]}
-    new_objects['muons'] = {'colorblind_color':'black','colorblind_ls':'dashed','p':[]}
-    new_objects['electrons'] = {'colorblind_color':'gray','colorblind_ls':'dashed','p':[]}
-    new_objects['photons'] = {'colorblind_color':'black','colorblind_ls':'solid','p':[]}
+        new_objects = {}
+        new_objects['jets'] = {'colorblind_color':'gray','colorblind_ls':'solid','p':[]}
+        new_objects['muons'] = {'colorblind_color':'black','colorblind_ls':'dashed','p':[]}
+        new_objects['electrons'] = {'colorblind_color':'gray','colorblind_ls':'dashed','p':[]}
+        new_objects['photons'] = {'colorblind_color':'black','colorblind_ls':'solid','p':[]}
 
+    elif experiment.lower()=='babar':
+        # Need to pull out just the momentum for each. 
+        orgpions = collision['pions']
+        orgkaons = collision['kaons']
+        orgprotons = collision['protons']
+        orgmuons = collision['muons']
+        orgelectrons = collision['electrons']
+        orgphotons = collision['photons']
+
+        objects = [orgpions, orgkaons, orgprotons, orgmuons, orgelectrons, orgphotons]
+
+        new_objects = {}
+        new_objects['pions'] = {'colorblind_color':'gray','colorblind_ls':'dotted','p':[]}
+        new_objects['kaons'] = {'colorblind_color':'black','colorblind_ls':'dotted','p':[]}
+        new_objects['protons'] = {'colorblind_color':'gray','colorblind_ls':'solid','p':[]}
+        new_objects['muons'] = {'colorblind_color':'black','colorblind_ls':'dashed','p':[]}
+        new_objects['electrons'] = {'colorblind_color':'gray','colorblind_ls':'dashed','p':[]}
+        new_objects['photons'] = {'colorblind_color':'black','colorblind_ls':'solid','p':[]}
 
     #jets = []
     for obj,key in zip(objects, new_objects.keys()):
@@ -181,8 +228,13 @@ def display_collision3D(collision,fig=None,ax=None,color_blind=False):
             new_objects[key]['p'].append([ob['px'], ob['py'], ob['pz']])
 
     #print(jets)
+    print(new_objects)
 
-    lines = draw_beams()
+    lines = None
+    if experiment.lower()=='cms':
+        lines = draw_beams()
+    elif experiment.lower()=='babar':
+        lines = draw_beams(pmom=[(0,0,-10.0),(0,0,10.0)])
 
     for key in new_objects.keys():
         pmom = new_objects[key]['p']
@@ -191,6 +243,12 @@ def display_collision3D(collision,fig=None,ax=None,color_blind=False):
         if(color_blind == False):
             if key=='jets':
                 lines += draw_jet3D(origin=origin,pmom=pmom)
+            elif key=='pions':
+                lines += draw_pion3D(origin=origin,pmom=pmom)
+            elif key=='kaons':
+                lines += draw_kaon3D(origin=origin,pmom=pmom)
+            elif key=='protons':
+                lines += draw_proton3D(origin=origin,pmom=pmom)
             elif key=='muons':
                 lines += draw_muon3D(origin=origin,pmom=pmom)
             elif key=='electrons':
@@ -202,6 +260,12 @@ def display_collision3D(collision,fig=None,ax=None,color_blind=False):
             cb_color = new_objects[key]['colorblind_color']
             if key=='jets':
                 lines += draw_jet3D(origin=origin,pmom=pmom,ls=ls,color=cb_color)
+            elif key=='pions':
+                lines += draw_pion3D(origin=origin,pmom=pmom,ls=ls,color=cb_color)
+            elif key=='kaons':
+                lines += draw_kaon3D(origin=origin,pmom=pmom,ls=ls,color=cb_color)
+            elif key=='protons':
+                lines += draw_proton3D(origin=origin,pmom=pmom,ls=ls,color=cb_color)
             elif key=='muons':
                 lines += draw_muon3D(origin=origin,pmom=pmom,ls=ls,color=cb_color)
             elif key=='electrons':
@@ -213,9 +277,14 @@ def display_collision3D(collision,fig=None,ax=None,color_blind=False):
     for l in lines:
         ax.add_line(l)
 
-    ax.set_xlim(-200,200)
-    ax.set_ylim(-200,200)
-    ax.set_zlim(-200,200)
+    if experiment.lower()=='cms':
+        ax.set_xlim(-200,200)
+        ax.set_ylim(-200,200)
+        ax.set_zlim(-200,200)
+    elif experiment.lower()=='babar':
+        ax.set_xlim(-2,2)
+        ax.set_ylim(-2,2)
+        ax.set_zlim(-2,2)
 
     #return lines,fig,ax
 ################################################################################

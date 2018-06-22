@@ -20,7 +20,7 @@ def get_collisions(infile,verbose=False,experiment='CMS'):
 
     data,event = h5hep.load(infile, verbose=verbose)
 
-    nevents = data['nevents']
+    nentries = data['nentries']
 
     if experiment.lower() == 'cms':
         groups = [['jets',['e','px','py','pz','btag']], 
@@ -42,7 +42,7 @@ def get_collisions(infile,verbose=False,experiment='CMS'):
                     ['photons',['e','px','py','pz']] ]
 
 
-    for i in range(0,nevents):
+    for i in range(0,nentries):
 
         #if verbose:
         if 1:
@@ -78,7 +78,7 @@ def get_collisions(infile,verbose=False,experiment='CMS'):
 ################################################################################
 def get_number_of_entries(alldata):
 
-    nentries = alldata[0]['nevents'] # We assume passing in an ntuple/list of data/event
+    nentries = alldata[0]['nentries'] # We assume passing in an ntuple/list of data/event
 
     return nentries
 
@@ -106,7 +106,7 @@ def get_collision(alldata,entry_number=0,verbose=False,experiment='CMS'):
     elif experiment.lower() == 'babar':
         groups = [['pions',['e','px','py','pz','q','beta','dedx']], 
                   ['kaons',['e','px','py','pz','q','beta','dedx']], 
-                  ['kaons',['e','px','py','pz','q','beta','dedx']], 
+                  ['protons',['e','px','py','pz','q','beta','dedx']], 
                   ['muons',['e','px','py','pz','q','beta','dedx']],
                   ['electrons',['e','px','py','pz','q','beta','dedx']],
                   ['photons',['e','px','py','pz']] ]

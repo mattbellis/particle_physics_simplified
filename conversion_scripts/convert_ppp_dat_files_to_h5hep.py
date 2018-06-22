@@ -142,7 +142,7 @@ def convert_babar(infilename):
     hdfile = h5hep.write_to_file(outfilename,data,comp_type='gzip',comp_opts=9)
     
 ################################################################################
-def convert_cleo(infilename):
+def convert_cleo(infilename,maxentries=None):
     data = h5hep.initialize()
 
     groups = [ ['pions','npions',['e','px','py','pz','q','sigpi','sigka','likpi','likka','nphopi','nphoka','depthmu','cluster_energy'] ], 
@@ -166,7 +166,10 @@ def convert_cleo(infilename):
 
     collisions = cleo.get_collisions(open(infilename))
 
-    for collision in collisions:
+    for count,collision in enumerate(collisions):
+
+        if maxentries is not None and count>=maxentries:
+                break
 
         h5hep.clear_event(event)
 
@@ -198,6 +201,8 @@ def convert_cleo(infilename):
 
     print("Writing the file...")
     outfilename = infilename.split('.')[0] + ".hdf5"
+    if maxentries is not None:
+        outfilename = infilename.split('.')[0] + "_" + str(maxentries) + "entries.hdf5"
     print(outfilename)
     hdfile = h5hep.write_to_file(outfilename,data,comp_type='gzip',comp_opts=9)
     
@@ -207,5 +212,5 @@ if __name__ == "__main__":
     infilename = sys.argv[1]
     #convert_cms(infilename)
     #convert_babar(infilename)
-    convert_cleo(infilename)
+    convert_cleo(infilename,maxentries=10)
 
