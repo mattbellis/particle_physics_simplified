@@ -34,6 +34,12 @@ def get_collisions(infile,verbose=False,experiment='CMS'):
                   ['muons',['e','px','py','pz','q','beta','dedx']],
                   ['electrons',['e','px','py','pz','q','beta','dedx']],
                   ['photons',['e','px','py','pz']] ]
+    elif experiment.lower() == 'cleo':
+        groups =  [ ['pions',['e','px','py','pz','q','sigpi','sigka','likpi','likka','nphopi','nphoka','depthmu','cluster_energy'] ],
+                    ['kaons',['e','px','py','pz','q','sigpi','sigka','likpi','likka','nphopi','nphoka','depthmu','cluster_energy'] ],
+                    ['muons',['e','px','py','pz','q','sigpi','sigka','likpi','likka','nphopi','nphoka','depthmu','cluster_energy'] ],
+                    ['electrons',['e','px','py','pz','q','sigpi','sigka','likpi','likka','nphopi','nphoka','depthmu','cluster_energy'] ],
+                    ['photons',['e','px','py','pz']] ]
 
 
     for i in range(0,nevents):
