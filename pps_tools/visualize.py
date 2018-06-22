@@ -188,7 +188,6 @@ def display_collision3D(collision,fig=None,ax=None,color_blind=False,experiment=
 
     new_objects = None
     objects = None
-    print(experiment.lower())
     if experiment.lower()=='cms':
         # Need to pull out just the momentum for each. 
         orgjets = collision['jets']
@@ -206,7 +205,6 @@ def display_collision3D(collision,fig=None,ax=None,color_blind=False,experiment=
         new_objects['photons'] = {'colorblind_color':'black','colorblind_ls':'solid','p':[]}
 
     elif experiment.lower()=='babar' or experiment.lower()=='cleo':
-        print("HERE!!!!")
         # Need to pull out just the momentum for each. 
         orgpions = collision['pions']
         orgkaons = collision['kaons']
@@ -231,14 +229,9 @@ def display_collision3D(collision,fig=None,ax=None,color_blind=False,experiment=
         new_objects['photons'] = {'colorblind_color':'black','colorblind_ls':'solid','p':[]}
 
     #jets = []
-    print(experiment)
-    print(new_objects)
     for obj,key in zip(objects, new_objects.keys()):
         for ob in obj:
             new_objects[key]['p'].append([ob['px'], ob['py'], ob['pz']])
-
-    #print(jets)
-    print(new_objects)
 
     lines = None
     if experiment.lower()=='cms':
