@@ -203,7 +203,7 @@ def display_collision3D(collision,fig=None,ax=None,color_blind=False,experiment=
         new_objects['electrons'] = {'colorblind_color':'gray','colorblind_ls':'dashed','p':[]}
         new_objects['photons'] = {'colorblind_color':'black','colorblind_ls':'solid','p':[]}
 
-    elif experiment.lower()=='babar':
+    elif experiment.lower()=='babar' or experiment.lower=='cleo':
         # Need to pull out just the momentum for each. 
         orgpions = collision['pions']
         orgkaons = collision['kaons']
@@ -235,6 +235,8 @@ def display_collision3D(collision,fig=None,ax=None,color_blind=False,experiment=
         lines = draw_beams()
     elif experiment.lower()=='babar':
         lines = draw_beams(pmom=[(0,0,-10.0),(0,0,10.0)])
+    elif experiment.lower()=='cleo':
+        lines = draw_beams(pmom=[(0,0,-2.0),(0,0,2.0)])
 
     for key in new_objects.keys():
         pmom = new_objects[key]['p']
@@ -285,6 +287,10 @@ def display_collision3D(collision,fig=None,ax=None,color_blind=False,experiment=
         ax.set_xlim(-2,2)
         ax.set_ylim(-2,2)
         ax.set_zlim(-2,2)
+    elif experiment.lower()=='cleo':
+        ax.set_xlim(-1,1)
+        ax.set_ylim(-1,1)
+        ax.set_zlim(-1,1)
 
     #return lines,fig,ax
 ################################################################################
