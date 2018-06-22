@@ -59,8 +59,10 @@ There is also a tentative D meson reconstruction activity in the Google Drive fo
 Added contact chips for the individual contributors to the website
 
 # Week 5 (6/18/18-6/22/18)
-Went live with the new design of the website
+Went live with the new design of the website, which Tyler created
 
 Checked the Colab activities to make sure they work; ran into errors with h5hep in the CMS muon and dimuon activities
 
 Began work on answer keys for the activities
+
+More tinkering with the website to see if everything ran smoothly on the new live version
