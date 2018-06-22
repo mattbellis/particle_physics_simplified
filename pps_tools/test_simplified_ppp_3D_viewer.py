@@ -17,10 +17,10 @@ print('Number of entries: {0}'.format(nentries))
 
 entry = 5
 
-collision = hep.get_collision(alldata,entry_number=entry,experiment='BaBar')
+collision = hep.get_collision(alldata,entry_number=entry,experiment='CLEO')
 
 #plt.figure()
-hep.display_collision3D(collision,color_blind=False,experiment='BaBar')
+hep.display_collision3D(collision,color_blind=False,experiment='CLEO')
 
 plt.show()
     

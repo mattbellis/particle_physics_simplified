@@ -188,6 +188,7 @@ def display_collision3D(collision,fig=None,ax=None,color_blind=False,experiment=
 
     new_objects = None
     objects = None
+    print(experiment.lower())
     if experiment.lower()=='cms':
         # Need to pull out just the momentum for each. 
         orgjets = collision['jets']
@@ -204,26 +205,34 @@ def display_collision3D(collision,fig=None,ax=None,color_blind=False,experiment=
         new_objects['electrons'] = {'colorblind_color':'gray','colorblind_ls':'dashed','p':[]}
         new_objects['photons'] = {'colorblind_color':'black','colorblind_ls':'solid','p':[]}
 
-    elif experiment.lower()=='babar' or experiment.lower=='cleo':
+    elif experiment.lower()=='babar' or experiment.lower()=='cleo':
+        print("HERE!!!!")
         # Need to pull out just the momentum for each. 
         orgpions = collision['pions']
         orgkaons = collision['kaons']
-        orgprotons = collision['protons']
+        if experiment.lower()=='babar':
+            orgprotons = collision['protons']
         orgmuons = collision['muons']
         orgelectrons = collision['electrons']
         orgphotons = collision['photons']
 
-        objects = [orgpions, orgkaons, orgprotons, orgmuons, orgelectrons, orgphotons]
+        if experiment.lower()=='babar':
+            objects = [orgpions, orgkaons, orgprotons, orgmuons, orgelectrons, orgphotons]
+        else:
+            objects = [orgpions, orgkaons, orgmuons, orgelectrons, orgphotons]
 
         new_objects = {}
         new_objects['pions'] = {'colorblind_color':'gray','colorblind_ls':'dotted','p':[]}
         new_objects['kaons'] = {'colorblind_color':'black','colorblind_ls':'dotted','p':[]}
-        new_objects['protons'] = {'colorblind_color':'gray','colorblind_ls':'solid','p':[]}
+        if experiment.lower()=='babar':
+            new_objects['protons'] = {'colorblind_color':'gray','colorblind_ls':'solid','p':[]}
         new_objects['muons'] = {'colorblind_color':'black','colorblind_ls':'dashed','p':[]}
         new_objects['electrons'] = {'colorblind_color':'gray','colorblind_ls':'dashed','p':[]}
         new_objects['photons'] = {'colorblind_color':'black','colorblind_ls':'solid','p':[]}
 
     #jets = []
+    print(experiment)
+    print(new_objects)
     for obj,key in zip(objects, new_objects.keys()):
         for ob in obj:
             new_objects[key]['p'].append([ob['px'], ob['py'], ob['pz']])
