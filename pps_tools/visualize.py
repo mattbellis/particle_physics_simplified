@@ -187,6 +187,7 @@ def display_collision3D(collision,fig=None,ax=None,color_blind=False,experiment=
         plt.subplots_adjust(top=0.98,bottom=0.02,right=0.98,left=0.02)
 
     new_objects = None
+    objects = None
     if experiment.lower()=='cms':
         # Need to pull out just the momentum for each. 
         orgjets = collision['jets']
