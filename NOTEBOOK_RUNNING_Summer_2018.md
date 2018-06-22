@@ -66,3 +66,5 @@ Checked the Colab activities to make sure they work; ran into errors with h5hep 
 Began work on answer keys for the activities
 
 More tinkering with the website to see if everything ran smoothly on the new live version
+
+Added an FAQ to the website
