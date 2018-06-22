@@ -298,9 +298,9 @@ def display_collision3D(collision,fig=None,ax=None,color_blind=False,experiment=
         ax.set_ylim(-2,2)
         ax.set_zlim(-2,2)
     elif experiment.lower()=='cleo':
-        ax.set_xlim(-1,1)
-        ax.set_ylim(-1,1)
-        ax.set_zlim(-1,1)
+        ax.set_xlim(-0.2,0.2)
+        ax.set_ylim(-0.2,0.2)
+        ax.set_zlim(-0.2,0.2)
 
     #return lines,fig,ax
 ################################################################################
