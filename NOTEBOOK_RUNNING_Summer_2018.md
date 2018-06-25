@@ -68,3 +68,7 @@ Began work on answer keys for the activities
 More tinkering with the website to see if everything ran smoothly on the new live version
 
 Added an FAQ to the website
+
+# Week 6 (6/25/18-6/29/18)
+
+
