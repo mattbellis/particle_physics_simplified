@@ -1,4 +1,5 @@
 import requests
+import os
 
 ################################################################################
 # Grabbed the following snippet from 
@@ -7,8 +8,13 @@ import requests
 # Works with just giving it the url, and assumes that the url contains in it a good filename,
 #o# unless you pass in something else.
 def download_file(url,local_filename=None):
+    # Just assume that they will want a data directory
+
+    if not os.path.exists('./data'):
+            os.makedirs('./data')
+
     if local_filename is None:
-        local_filename = "../data/%s" % (url.split('/')[-1])
+        local_filename = "%s" % (url.split('/')[-1])
 
     # NOTE the stream=True parameter
     r = requests.get(url, stream=True)
@@ -28,6 +34,10 @@ def download_file(url,local_filename=None):
 # 
 # id is the url "stub"
 def download_file_from_google_drive(id, local_filename):
+
+    if not os.path.exists('./data'):
+            os.makedirs('./data')
+
     def get_confirm_token(response):
         for key, value in list(response.cookies.items()):
             if key.startswith('download_warning'):
