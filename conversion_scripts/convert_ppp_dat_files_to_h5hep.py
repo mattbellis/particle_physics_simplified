@@ -8,7 +8,7 @@ import babar_tools as babar
 import cleo_tools as cleo
 
 ################################################################################
-def convert_cms(infilename):
+def convert_cms(infilename,maxentries=None):
     data = h5hep.initialize()
 
     h5hep.create_group(data,'jets',counter='njets')
@@ -30,7 +30,10 @@ def convert_cms(infilename):
     collisions = cms.get_collisions_from_filename(infilename)
 
     #'''
-    for collision in collisions:
+    for count,collision in enumerate(collisions):
+
+        if maxentries is not None and count>=maxentries:
+            break
 
         h5hep.clear_event(event)
 
@@ -76,12 +79,14 @@ def convert_cms(infilename):
 
     print("Writing the file...")
     outfilename = infilename.split('.')[0] + ".hdf5"
+    if maxentries is not None:
+        outfilename = infilename.split('.')[0] + "_" + str(maxentries) + "entries.hdf5"
     print(outfilename)
     hdfile = h5hep.write_to_file(outfilename,data,comp_type='gzip',comp_opts=9)
     #'''
 ################################################################################
 ################################################################################
-def convert_babar(infilename):
+def convert_babar(infilename,maxentries=None):
     data = h5hep.initialize()
 
     groups = [ ['pions','npions',['e','px','py','pz','q','beta','dedx'] ], 
@@ -106,7 +111,10 @@ def convert_babar(infilename):
 
     collisions = babar.get_collisions(open(infilename))
 
-    for collision in collisions:
+    for count,collision in enumerate(collisions):
+
+        if maxentries is not None and count>=maxentries:
+            break
 
         h5hep.clear_event(event)
 
@@ -138,6 +146,8 @@ def convert_babar(infilename):
 
     print("Writing the file...")
     outfilename = infilename.split('.')[0] + ".hdf5"
+    if maxentries is not None:
+        outfilename = infilename.split('.')[0] + "_" + str(maxentries) + "entries.hdf5"
     print(outfilename)
     hdfile = h5hep.write_to_file(outfilename,data,comp_type='gzip',comp_opts=9)
     
@@ -169,7 +179,7 @@ def convert_cleo(infilename,maxentries=None):
     for count,collision in enumerate(collisions):
 
         if maxentries is not None and count>=maxentries:
-                break
+            break
 
         h5hep.clear_event(event)
 
@@ -209,8 +219,17 @@ def convert_cleo(infilename,maxentries=None):
 ################################################################################
 
 if __name__ == "__main__":
-    infilename = sys.argv[1]
-    #convert_cms(infilename)
-    #convert_babar(infilename)
-    convert_cleo(infilename,maxentries=10)
+    exptype = 'cms'
+    exptype = sys.argv[1].lower()
+    infilename = sys.argv[2]
+    maxnum = None
+    if len(sys.argv)>3:
+        maxnum = int(sys.argv[3])
+
+    if exptype=='cms':
+        convert_cms(infilename,maxentries=maxnum)
+    elif exptype=='babar':
+        convert_babar(infilename,maxentries=maxnum)
+    elif exptype=='cleo':
+        convert_cleo(infilename,maxentries=maxnum)
 

@@ -92,7 +92,8 @@ def convert_cms(infilename):
     '''
 ################################################################################
 ################################################################################
-def convert_babar(infilename):
+@profile
+def convert_babar(infilename,maxentries=None):
     data = h5hep.initialize()
 
     groups = [ ['pions','npions',['e','px','py','pz','q','beta','dedx'] ], 
@@ -122,6 +123,9 @@ def convert_babar(infilename):
 
     #'''
     for i in range(nentries):
+
+        if maxentries is not None and i>=maxentries:
+            break
 
         h5hep.clear_event(event)
 
@@ -199,7 +203,7 @@ def convert_babar(infilename):
             event['protons/beta'].append(beta)
             event['protons/dedx'].append(dedx)
 
-        event['protons/nprotons'] = tree.nmu
+        event['muons/nmuons'] = tree.nmu
         for j in range(tree.nmu):
             e = tree.muenergy[j]
             p3 = tree.mup3[j]
@@ -213,13 +217,13 @@ def convert_babar(infilename):
             drc = tree.TRKDrcTh[idx]
             beta = 1.0/np.cos(drc)/1.474
 
-            event['protons/e'].append(e)
-            event['protons/px'].append(px)
-            event['protons/py'].append(py)
-            event['protons/pz'].append(pz)
-            event['protons/q'].append(q)
-            event['protons/beta'].append(beta)
-            event['protons/dedx'].append(dedx)
+            event['muons/e'].append(e)
+            event['muons/px'].append(px)
+            event['muons/py'].append(py)
+            event['muons/pz'].append(pz)
+            event['muons/q'].append(q)
+            event['muons/beta'].append(beta)
+            event['muons/dedx'].append(dedx)
 
         event['electrons/nelectrons'] = tree.ne
         for j in range(tree.ne):
@@ -260,6 +264,8 @@ def convert_babar(infilename):
 
     print("Writing the file...")
     outfilename = infilename.split('.')[0] + ".hdf5"
+    if maxentries is not None:
+        outfilename = infilename.split('.')[0] + "_" + str(maxentries) + "entries.hdf5"
     print(outfilename)
     hdfile = h5hep.write_to_file(outfilename,data,comp_type='gzip',comp_opts=9)
     
@@ -326,8 +332,17 @@ def convert_cleo(infilename):
 ################################################################################
 
 if __name__ == "__main__":
-    infilename = sys.argv[1]
-    #convert_cms(infilename)
-    convert_babar(infilename)
-    #convert_cleo(infilename)
+    exptype = sys.argv[1]
+    infilename = sys.argv[2]
+    maxnum = None
+    if len(sys.argv)>3:
+        maxnum = int(sys.argv[3])
+
+    if exptype=='cms':
+        convert_cms(infilename,maxentries=maxnum)
+    elif exptype=='babar':
+        convert_babar(infilename,maxentries=maxnum)
+    elif exptype=='cleo':
+        convert_cleo(infilename,maxentries=10)
+
 
