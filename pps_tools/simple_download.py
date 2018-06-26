@@ -32,4 +32,4 @@ def download_from_drive(filename):
     data['single_top.hdf5']='1UwYbWh6czZ6MTdWW9wTMph-tK_FkttzO'
     data['qcd.hdf5']='1J-97Viw5kKOlVZVHYmSFgZw4P8kJHAkG'
 
-    download_file_from__google_drive(data[filename],'data/'+filename)
+    download_file_from_google_drive(data[filename],'data/'+filename)
