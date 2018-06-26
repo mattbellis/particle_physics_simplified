@@ -108,7 +108,7 @@ def key_to_id_dictionary(filename):
     data['dimuons_1000_collisions.hdf5']='1fU8bMs1ZOmTFePkmS_LmYZq9KfaqJG1z'
     data['small_cms_test_file.hdf5']='1GlysdzCZ3dpW2YXoJqqjte5TBOIwsVv2'
     ## BABAR FILES ##
-    data['basicPID_R24-AllEvents-Run1-OnPeak-R24-744.hdf5']='1jpnv5xogtfsk2eIE1C8HGHxYhTCRbC08'
+    data['basicPID_R24-AllEvents-Run1-OnPeak-R24-388.hdf5']='1ICI5TVgOPvl92BUUO3u1G_nksopO8JXc'
     data['small_BaBar_test_file.hdf5']='1RLfoiephpYiwCXfCSOUat9IaQ2SWfdtQ'
 
     return(data[filename])
