@@ -90,6 +90,7 @@ def download_from_drive(filename):
     data['Single_Dm_to_Kpipi_ISR_LARGE.hdf5']='13kpQ6cD_g7O3839x38h_ZLNEWZVNLJVg'
     data['Single_Dp_to_Kpipi_ISR_LARGE.hdf5']='1bYfk3WCPmHSyttmkmCbtBVoDbDGKlgQU'
     data['data31_100k_LARGE.hdf5']='1LYmDkr4vzZGQDpo0cuQ2SVqnPAV16H7Q'
+    data['small_CLEO_test_file.hdf5']='1zryK4QKZbAiRz4TQNbyA18fZwxZqtQxh'
     ## CMS FILES ##
     data['data.hdf5']='1bWHUZxDflq_Utdbm86wASyfi-N5VMhtQ'
     data['ttbar.hdf5']='17T9eFz2znHpr9bms3b9GJ_4rMFRBmiRf'
@@ -102,8 +103,10 @@ def download_from_drive(filename):
     data['qcd.hdf5']='1J-97Viw5kKOlVZVHYmSFgZw4P8kJHAkG'
     data['dimuons_100k.hdf5']='13gCId3e815LUBsQvGz-MQHInAp8Fz8n2'
     data['dimuons_1000_collisions.hdf5']='1fU8bMs1ZOmTFePkmS_LmYZq9KfaqJG1z'
+    data['small_cms_test_file.hdf5']='1GlysdzCZ3dpW2YXoJqqjte5TBOIwsVv2'
     ## BABAR FILES ##
     data['basicPID_R24-AllEvents-Run1-OnPeak-R24-744.hdf5']='1jpnv5xogtfsk2eIE1C8HGHxYhTCRbC08'
+    data['small_BaBar_test_file.hdf5']='1RLfoiephpYiwCXfCSOUat9IaQ2SWfdtQ'
 
     download_file_from_google_drive(data[filename],'data/'+filename)
 
