@@ -77,6 +77,7 @@ def key_to_id_dictionary(filename):
     data = {}
 
     ## CLEO FILES ##
+    data['Single_D0B_to_KK_ISR_LARGE.hdf5']='1MC528teXmOHf53yvR7OQdfyWrcvwepQG'
     data['Single_D0B_to_Kenu_ISR_LARGE.hdf5']= '1TIFnXcArzTa33SIojUg6vu3CglWvxi6t'
     data['Single_D0B_to_Kpipi0_ISR_LARGE.hdf5']='1nCehurYp3U6TsoBAqrmBygePm24VNzAE'
     data['Single_D0B_to_Kstenu_ISR_LARGE.hdf5']='1N47ZmMrwSl9s3PjkvyyApYzsYEKehARk'
@@ -114,8 +115,7 @@ def key_to_id_dictionary(filename):
 
 def download_from_drive(filename):
     
-    id = key_to_id_dictionary(filename)
-    download_file_from_google_drive(id,'data/'+filename)
+    download_file_from_google_drive(filename,'data/'+filename)
 
 
 
