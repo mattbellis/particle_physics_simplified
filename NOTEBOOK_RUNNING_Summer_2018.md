@@ -70,5 +70,9 @@ More tinkering with the website to see if everything ran smoothly on the new liv
 Added an FAQ to the website
 
 # Week 6 (6/25/18-6/29/18)
+Uploaded data files to Google Drive and called them in using Python dictionary keys, as well as updating pps_tools to accomodate those files
 
+More sprucing up the notebooks and making sure they work
+
+Looked into pricing options should we choose to store the data on Google Cloud
 
