@@ -30,7 +30,7 @@ def get_collisions(infile,verbose=False,experiment='CMS'):
     elif experiment.lower() == 'babar':
         groups = [['pions',['e','px','py','pz','q','beta','dedx']], 
                   ['kaons',['e','px','py','pz','q','beta','dedx']], 
-                  ['kaons',['e','px','py','pz','q','beta','dedx']], 
+                  ['protons',['e','px','py','pz','q','beta','dedx']], 
                   ['muons',['e','px','py','pz','q','beta','dedx']],
                   ['electrons',['e','px','py','pz','q','beta','dedx']],
                   ['photons',['e','px','py','pz']] ]
