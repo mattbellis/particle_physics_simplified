@@ -4,12 +4,12 @@ import matplotlib.patches as mpatches
 import matplotlib.lines as mlines
 import mpl_toolkits.mplot3d.art3d as a3
 
-from IPython.display import clear_output,display
+#from IPython.display import clear_output,display
 import time
 
 import h5hep
 
-import zipfile
+#import zipfile
 
 ################################################################################
 def get_collisions(infile,verbose=False,experiment='CMS'):

@@ -15,12 +15,13 @@ energies = []
 nentries = hep.get_number_of_entries(alldata)
 print('Number of entries: {0}'.format(nentries))
 
-entry = 5
+entry = 10
 
-collision = hep.get_collision(alldata,entry_number=entry,experiment='CLEO')
+experiment = 'BaBar'
+collision = hep.get_collision(alldata,entry_number=entry,experiment=experiment)
 
 #plt.figure()
-hep.display_collision3D(collision,color_blind=False,experiment='CLEO')
+hep.display_collision3D(collision,color_blind=False,experiment=experiment)
 
 plt.show()
     
