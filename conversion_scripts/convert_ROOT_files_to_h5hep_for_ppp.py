@@ -92,7 +92,7 @@ def convert_cms(infilename):
     '''
 ################################################################################
 ################################################################################
-@profile
+#@profile
 def convert_babar(infilename,maxentries=None):
     data = h5hep.initialize()
 

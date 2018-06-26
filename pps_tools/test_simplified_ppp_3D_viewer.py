@@ -15,7 +15,7 @@ energies = []
 nentries = hep.get_number_of_entries(alldata)
 print('Number of entries: {0}'.format(nentries))
 
-entry = 10
+entry = 9
 
 experiment = 'BaBar'
 collision = hep.get_collision(alldata,entry_number=entry,experiment=experiment)
