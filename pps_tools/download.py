@@ -100,6 +100,7 @@ def download_from_drive(filename):
     data['zz.hdf5']='1Y3eFUb2gC6r1AGbcXQxLEBI39foO1etR'
     data['single_top.hdf5']='1UwYbWh6czZ6MTdWW9wTMph-tK_FkttzO'
     data['qcd.hdf5']='1J-97Viw5kKOlVZVHYmSFgZw4P8kJHAkG'
+    data['dimuons_100k.hdf5']='13gCId3e815LUBsQvGz-MQHInAp8Fz8n2'
 
     download_file_from_google_drive(data[filename],'data/'+filename)
 
