@@ -1,11 +1,5 @@
-import requests
-import os
-
-from download.py import download_file_from_google_drive   
-
-
 ################################################################################
-### Simplifies above function to use one argument, using dictionaries ##########
+### Simplifies google drive download function to use one argument, using dictionaries ##########
 
 def download_from_drive(filename):
 
