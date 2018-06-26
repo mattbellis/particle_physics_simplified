@@ -33,7 +33,9 @@ def download_file(url,local_filename=None):
 # https://stackoverflow.com/questions/25010369/wget-curl-large-file-from-google-drive/39225039#39225039
 # 
 # id is the url "stub"
-def download_file_from_google_drive(id, local_filename):
+def download_file_from_google_drive(global_filename, local_filename):
+    
+    id = key_to_id_dictionary(global_filename)
 
     if not os.path.exists('./data'):
             os.makedirs('./data')
@@ -70,7 +72,7 @@ def download_file_from_google_drive(id, local_filename):
 ################################################################################
 ### Simplifies google drive download function to use one argument, using dictionaries ##########
 
-def download_from_drive(filename):
+def key_to_id_dictionary(filename):
 
     data = {}
 
@@ -108,7 +110,12 @@ def download_from_drive(filename):
     data['basicPID_R24-AllEvents-Run1-OnPeak-R24-744.hdf5']='1jpnv5xogtfsk2eIE1C8HGHxYhTCRbC08'
     data['small_BaBar_test_file.hdf5']='1RLfoiephpYiwCXfCSOUat9IaQ2SWfdtQ'
 
-    download_file_from_google_drive(data[filename],'data/'+filename)
+    return(data[filename])
+
+def download_from_drive(filename):
+    
+    id = key_to_id_dictionary(filename)
+    download_file_from_google_drive(id,'data/'+filename)
 
 
 
