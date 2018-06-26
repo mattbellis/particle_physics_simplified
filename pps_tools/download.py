@@ -115,8 +115,7 @@ def key_to_id_dictionary(filename):
 
 def download_from_drive(filename):
     
-    id = key_to_id_dictionary(filename)
-    download_file_from_google_drive(id,'data/'+filename)
+    download_file_from_google_drive(filename,'data/'+filename)
 
 
 
