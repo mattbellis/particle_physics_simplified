@@ -4,6 +4,7 @@ sys.path.append('../pps_tools')
 import h5hep 
 
 import ROOT 
+import uproot
 ################################################################################
 def sph2cart(pmag,costh,phi):
     theta = np.arccos(costh)
@@ -34,10 +35,13 @@ def convert_cms(infilename):
     
     event = h5hep.create_single_event(data)
 
-    f = ROOT.TFile(infilename)
-    t = ROOT.Get('ntp1')
+    #f = ROOT.TFile(infilename)
+    #t = ROOT.Get('ntp1')
+    f = uproot.open(infilename)
+    t = f['ntp1']
 
-    nentries = t.GetEntries()
+    #nentries = t.GetEntries()
+    nentries = tree.numentries
 
     #'''
     for i in range(nentries):
@@ -118,8 +122,11 @@ def convert_babar(infilename,maxentries=None):
 
     f = ROOT.TFile(infilename)
     tree = f.Get('ntp1')
+    #f = uproot.open(infilename)
+    #tree = f['ntp1']
 
     nentries = tree.GetEntries()
+    #nentries = tree.numentries
 
     #'''
     for i in range(nentries):
@@ -331,6 +338,99 @@ def convert_cleo(infilename):
     
 ################################################################################
 
+
+################################################################################
+def convert_BaBar_ROOT(infilename,maxentries=None):
+    data = h5hep.initialize()
+
+    f = uproot.open(infilename)
+    t = f['ntp1']
+
+    nentries = t.numentries
+
+    counters = {}
+    nocounters = []
+    hascounters = []
+    print(nentries)
+    branchnames = t.allkeys()
+    for branch in branchnames:
+        countleaf = t[branch].countleaf
+        if countleaf is not None:
+            if countleaf in counters.keys():
+                counters[countleaf].append(branch.decode())
+            print(branch.decode(), countleaf.fName.decode())
+        else:
+            nocounters.append(branch.decode())
+
+    print(np.unique(counters))
+    print()
+    print(nocounters)
+    print()
+    print(hascounters)
+
+    print(t['nTRK'])
+    '''
+    groups = [ ['pions','npions',['e','px','py','pz','q','sigpi','sigka','likpi','likka','nphopi','nphoka','depthmu','cluster_energy'] ], 
+               ['kaons','nkaons',['e','px','py','pz','q','sigpi','sigka','likpi','likka','nphopi','nphoka','depthmu','cluster_energy'] ], 
+               ['muons','nmuons',['e','px','py','pz','q','sigpi','sigka','likpi','likka','nphopi','nphoka','depthmu','cluster_energy'] ], 
+               ['electrons','nelectrons',['e','px','py','pz','q','sigpi','sigka','likpi','likka','nphopi','nphoka','depthmu','cluster_energy'] ], 
+               ['photons','nphotons',['e','px','py','pz'] ],
+               ]
+
+    for group in groups:
+
+        h5hep.create_group(data,group[0],counter=group[1])
+        h5hep.create_dataset(data,group[2],group=group[0],dtype=float)
+    '''
+
+    '''
+    h5hep.create_group(data,'pions',counter='npions')
+    h5hep.create_dataset(data,['e','px','py','pz','q','beta','dedx'],group='pions',dtype=float)
+    '''
+
+    '''
+    event = h5hep.create_single_event(data)
+
+    collisions = cleo.get_collisions(open(infilename))
+
+    for collision in collisions:
+
+        h5hep.clear_event(event)
+
+        pions,kaons,muons,electrons,photons = collision
+
+        particles = [pions,kaons,muons,electrons,photons]
+
+        for group,particle in zip(groups, particles):
+            key = "%s/%s" % (group[0],group[1])
+            event[key] = len(particle)
+            for p in particle:
+                for j in range(len(group[2])):
+                    key = '%s/%s' % (group[0],group[2][j])
+                    event[key].append(p[j])
+     '''
+
+    '''
+        event['pions/npions'] = len(pions)
+        for pion in pions:
+            event['pions/e'].append(pion[0])
+            event['pions/px'].append(pion[1])
+            event['pions/py'].append(pion[2])
+            event['pions/pz'].append(pion[3])
+            event['pions/q'].append(pion[4])
+            event['pions/beta'].append(pion[5])
+            event['pions/dedx'].append(pion[6])
+    '''
+
+        #h5hep.pack(data,event)
+
+    #print("Writing the file...")
+    #outfilename = infilename.split('.')[0] + ".hdf5"
+    #print(outfilename)
+    #hdfile = h5hep.write_to_file(outfilename,data,comp_type='gzip',comp_opts=9)
+    
+################################################################################
+
 if __name__ == "__main__":
     exptype = sys.argv[1]
     infilename = sys.argv[2]
@@ -344,5 +444,6 @@ if __name__ == "__main__":
         convert_babar(infilename,maxentries=maxnum)
     elif exptype=='cleo':
         convert_cleo(infilename,maxentries=10)
-
+    elif exptype=='root':
+        convert_BaBar_ROOT(infilename,maxentries=10)
 
