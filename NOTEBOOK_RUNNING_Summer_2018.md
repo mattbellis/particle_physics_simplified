@@ -76,3 +76,7 @@ More sprucing up the notebooks and making sure they work
 
 Looked into pricing options should we choose to store the data on Google Cloud
 
+Experimented with gsutil and os commands to find out how to download data from Google Cloud into Colab
+
+Continued work with BaBar data (now with photons) in the hopes of creating a new exercise for the website
+
