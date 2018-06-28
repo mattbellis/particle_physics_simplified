@@ -77,6 +77,8 @@ More sprucing up the notebooks and making sure they work
 Looked into pricing options should we choose to store the data on Google Cloud
 
 Experimented with gsutil and os commands to find out how to download data from Google Cloud into Colab
+To access data in a Google Cloud bucket, you have to have the permission to read and/or it, or send in a Requester Pays
+Also, we found out how to copy over data from a Google Cloud bucket into Google Colab, and then how to access it akin to how we have been doing for the activities on the website
 
 Continued work with BaBar data (now with photons) in the hopes of creating a new exercise for the website
 
