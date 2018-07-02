@@ -84,3 +84,8 @@ Also, we found out how to copy over data from a Google Cloud bucket into Google 
 
 Continued work with BaBar data (now with photons) in the hopes of creating a new exercise for the website
 
+# Future work:
+
+'Verbose' argument in pps tools should be fixed to change output of tools
+
+pps tools should be modified such that the dictionary keys are returned so it is possible to list all the possible keys available for a file
