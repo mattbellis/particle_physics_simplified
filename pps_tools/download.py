@@ -113,11 +113,14 @@ def key_to_id_dictionary(filename):
 
     return(data[filename])
 
+### simplified function to download files from Google Drive to COLAB ###
 def download_from_drive(filename):
     
     download_file_from_google_drive(filename,'data/'+filename)
 
-
+### simplified function to download files from Google Drive to LOCAL ###  
+def download_drive_file(filename):
+    download_file_from_google_drive(filename,'../data/'+filename)
 
 
 '''
