@@ -108,7 +108,15 @@ def key_to_id_dictionary(filename):
     data['dimuons_1000_collisions.hdf5']='1fU8bMs1ZOmTFePkmS_LmYZq9KfaqJG1z'
     data['small_cms_test_file.hdf5']='1GlysdzCZ3dpW2YXoJqqjte5TBOIwsVv2'
     ## BABAR FILES ##
+    data['basicPID_R24-AllEvents-Run1-OnPeak-R24-38.hdf5']='1wpapCrJfKCHlgI2J9Av5OVsLueyhgj_k'
     data['basicPID_R24-AllEvents-Run1-OnPeak-R24-388.hdf5']='16cewG1_hO3H-_uSQZVBQ8cvlpT6Ezx4V'
+    data['basicPID_R24-AllEvents-Run1-OnPeak-R24-1133.hdf5']='1-HPCb1d-NNnb6w6LzeOwxlG1iFcBO_cF'
+    data['basicPID_R24-AllEvents-Run1-OnPeak-R24-1552.hdf5']='1js0sKXaDrJfCNIq7msatXZlOO9LSaUSW'
+    data['basicPID_R24-AllEvents-Run1-OnPeak-R24-1694.hdf5']='19azB7SqT8OAKK8nyJlsEbLBZvn1NUXA6'
+    data['basicPID_R24-AllEvents-Run1-OnPeak-R24-1920.hdf5']='1CSj0i6cm_A9VgO9ItaRnhmVnZvbdw1rS'
+    data['basicPID_R24-AllEvents-Run1-OnPeak-R24-2026.hdf5']='1gT_SldMdsK_SKSiE2SYfMibbMND4vkGG'
+    data['basicPID_R24-AllEvents-Run1-OnPeak-R24-2781.hdf5']='1OJJe8zDB0qVAc3IdR3ciedd9Bxk6oNLM'
+    data['basicPID_R24-AllEvents-Run1-OnPeak-R24-2835.hdf5']='1zAlpzNtTCIV2WrEqwdcHYO-9di1dLdRO'
     data['small_BaBar_test_file.hdf5']='1kmmKqnhoGs7wnyVhwZrrlM0JSe8E13Oz'
 
     return(data[filename])
