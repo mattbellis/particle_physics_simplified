@@ -118,6 +118,9 @@ def key_to_id_dictionary(filename):
     data['basicPID_R24-AllEvents-Run1-OnPeak-R24-2781.hdf5']='1OJJe8zDB0qVAc3IdR3ciedd9Bxk6oNLM'
     data['basicPID_R24-AllEvents-Run1-OnPeak-R24-2835.hdf5']='1zAlpzNtTCIV2WrEqwdcHYO-9di1dLdRO'
     data['small_BaBar_test_file.hdf5']='1kmmKqnhoGs7wnyVhwZrrlM0JSe8E13Oz'
+    
+    data['icecube_events_small.h5'] = '13eAyNzf4hI7i-y3d_Dr_-l2hnwPjQGqS'
+    data['icecube_events_large.h5'] = '1HDPndeJDJxhScGsuF8shV_qKtKBj4z2M'
 
     return(data[filename])
 
