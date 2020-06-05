@@ -121,6 +121,10 @@ def key_to_id_dictionary(filename):
     
     data['icecube_events_small.h5'] = '13eAyNzf4hI7i-y3d_Dr_-l2hnwPjQGqS'
     data['icecube_events_large.h5'] = '1HDPndeJDJxhScGsuF8shV_qKtKBj4z2M'
+    
+    # SDSS
+    data['SDSS_CMASS_north.dat'] = '18KiYS4jTvxl2tMQvcbzNx0xATDl1fvy2'
+    data['SDSS_CMASS_north_small.dat'] = '11ieqxipjjasAoSOaYuQ2oSi_adK4zmjf'
 
     return(data[filename])
 
