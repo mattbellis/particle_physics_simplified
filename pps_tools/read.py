@@ -145,3 +145,12 @@ def get_collision(alldata,entry_number=0,verbose=False,experiment='CMS'):
 
     return collision
 
+################################################################################
+def get_icecube_event(alldata,entry_number=0,verbose=False):
+
+    data,event = alldata[0],alldata[1]
+
+    h5hep.unpack(event,data,n=entry_number)
+
+    return event
+
