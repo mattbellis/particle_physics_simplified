@@ -9,6 +9,8 @@ import time
 
 import h5hep
 
+import plotly.express as px
+
 ################################################################################
 ################################################################################
 ################################################################################
@@ -349,4 +351,42 @@ def display_collision3D_animate(collisions,fig=None):
 
     #return lines,fig,ax
 
+################################################################################
+def display_icecube_event(event,backend='plotly',draw_wires=True): 
+    q,x,y,z,t = event['hits/q'],event['hits/x'],event['hits/y'],event['hits/z'],event['hits/t'] 
+
+    if backend=='plotly':
+          #############################################
+        fig= px.scatter_3d(x=x,y=y,z=z,color=t,color_continuous_scale='Bluered')
+        fig.update_traces(marker=dict(size=q*2,line=dict(width=0)),selector=dict(mode='markers'))
+        if draw_wires:
+            ############ Get which strings had hits on them
+            vals = np.array([x,y]).transpose()
+            string_coords = []
+            for a in vals:
+                IN_FLAG = False
+                for p in string_coords:
+                     #print(a,p)
+                    if a[0] == p[0] and a[1]==p[1]:
+                        IN_FLAG = True
+                        break
+
+                if not IN_FLAG:
+                    string_coords.append(a)
+
+            print("here")
+            #print(string_coords)
+            ################## Draw the strings ########################
+            for p in string_coords:
+                fig.append_trace({'x':[p[0],p[0]],'y':[p[1],p[1]],'z':[-400,1200],'type':'scatter3d','showlegend':False,'marker':{'size':1},'line':{'dash':'dash','color':'lightgray'}},1,1)
+            ##############################################################
+
+        fig.update_layout(width=800,height=400,margin=dict( \
+                  l=0, \
+                  r=0, \
+                  b=0, \
+                  t=0, \
+                  pad=1 \
+              ),)
+        return fig 
 
