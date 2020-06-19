@@ -352,12 +352,12 @@ def display_collision3D_animate(collisions,fig=None):
     #return lines,fig,ax
 
 ################################################################################
-def display_icecube_event(event,backend='plotly',draw_wires=True): 
+def display_icecube_event(event,backend='plotly',draw_wires=True,color_scale='Bluered'): 
     q,x,y,z,t = event['hits/q'],event['hits/x'],event['hits/y'],event['hits/z'],event['hits/t'] 
 
     if backend=='plotly':
           #############################################
-        fig= px.scatter_3d(x=x,y=y,z=z,color=t,color_continuous_scale='Bluered')
+        fig= px.scatter_3d(x=x,y=y,z=z,color=t,color_continuous_scale=color_scale)
         fig.update_traces(marker=dict(size=q*2,line=dict(width=0)),selector=dict(mode='markers'))
         if draw_wires:
             ############ Get which strings had hits on them
