@@ -127,6 +127,17 @@ def key_to_id_dictionary(filename):
     data['SDSS_CMASS_north.dat'] = '18KiYS4jTvxl2tMQvcbzNx0xATDl1fvy2'
     data['SDSS_CMASS_north_small.dat'] = '11ieqxipjjasAoSOaYuQ2oSi_adK4zmjf'
 
+    # CMS top quark
+    data['data.h5'] = 'XXX'
+    data['dy.h5'] = 'XXX'
+    data['qcd.h5'] = 'XXX'
+    data['single_top.h5'] = 'XXX'
+    data['ttbar.h5'] = 'XXX'
+    data['wjets.h5'] = 'XXX'
+    data['ww.h5'] = 'XXX'
+    data['wz.h5'] = 'XXX'  
+    data['zz.h5'] = 'XXX'
+    
     return(data[filename])
 
 ### simplified function to download files from Google Drive to COLAB ###
