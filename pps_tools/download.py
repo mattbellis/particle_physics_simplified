@@ -128,15 +128,15 @@ def key_to_id_dictionary(filename):
     data['SDSS_CMASS_north_small.dat'] = '11ieqxipjjasAoSOaYuQ2oSi_adK4zmjf'
 
     # CMS top quark
-    data['data.h5'] = 'XXX'
-    data['dy.h5'] = 'XXX'
-    data['qcd.h5'] = 'XXX'
-    data['single_top.h5'] = 'XXX'
-    data['ttbar.h5'] = 'XXX'
-    data['wjets.h5'] = 'XXX'
-    data['ww.h5'] = 'XXX'
-    data['wz.h5'] = 'XXX'  
-    data['zz.h5'] = 'XXX'
+    data['data.h5'] = '1AVL0luXl_GJv4C1ATOp2E8gXqYuEktwh'
+    data['dy.h5'] = '1FVcYN_lSXox5sWnA_F3fZyzaqrlqldEB'
+    data['qcd.h5'] = '163rLzAZA1j66BTgPXAYr0lc45-duHAQf'
+    data['single_top.h5'] = '1UR8bDVMEjJU-lTDH6sE6ol3IODmDont8'
+    data['ttbar.h5'] = '14U-IYgY1TUQEMg6TjCm7prf9anHvtvgO'
+    data['wjets.h5'] = '1BTj5bmiNFVCf7xhtcT2fVJUSXFnnmutR'
+    data['ww.h5'] = '10nfMpMwgNHL0cJrnQ4EBPidgsbQ_M-ib'
+    data['wz.h5'] = '1nwyUqzof0fW0-Uq7MJLV7gd_p5sKhCh5'  
+    data['zz.h5'] = '1EWoysDrWSI0l-R7CjcdcE342wuja4V6P'
     
     return(data[filename])
 
