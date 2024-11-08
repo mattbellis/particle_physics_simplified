@@ -141,6 +141,8 @@ def key_to_id_dictionary(filename):
     data['ww.h5'] = '10nfMpMwgNHL0cJrnQ4EBPidgsbQ_M-ib'
     data['wz.h5'] = '1nwyUqzof0fW0-Uq7MJLV7gd_p5sKhCh5'  
     data['zz.h5'] = '1EWoysDrWSI0l-R7CjcdcE342wuja4V6P'
+
+    data['wz.root'] = '1UD7o3MV6hZdINFvdK5sMUWS2YH3Qu-mS'
     
     return(data[filename])
 
