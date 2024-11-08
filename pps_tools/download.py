@@ -33,7 +33,10 @@ def download_file(url,local_filename=None):
 # https://stackoverflow.com/questions/25010369/wget-curl-large-file-from-google-drive/39225039#39225039
 # 
 # id is the url "stub"
-def download_file_from_google_drive(global_filename, local_filename):
+def download_file_from_google_drive(global_filename, local_filename=None):
+
+    if local_filename is None:
+        local_filename = global_filename
     
     id = key_to_id_dictionary(global_filename)
 
@@ -95,15 +98,16 @@ def key_to_id_dictionary(filename):
     data['data31_100k_LARGE.hdf5']='1LYmDkr4vzZGQDpo0cuQ2SVqnPAV16H7Q'
     data['small_CLEO_test_file.hdf5']='1zryK4QKZbAiRz4TQNbyA18fZwxZqtQxh'
     ## CMS FILES ##
-    data['data.hdf5']='1bWHUZxDflq_Utdbm86wASyfi-N5VMhtQ'
-    data['ttbar.hdf5']='17T9eFz2znHpr9bms3b9GJ_4rMFRBmiRf'
-    data['wjets.hdf5']='1G6-mklbUEg2Dd3uDLERODPx0cmH8Ogd-'
-    data['dy.hdf5']='1PZqqlWKE6qdeA50mJU5z2jVZ5bT_CNc7'
-    data['ww.hdf5']='1wGxJ1SKGtUh3n7tqWJ12Sv-pBHjlmrqi'
-    data['wz.hdf5']='1It4tQMhz_t-9dfPylaa1MMbvOg0gSqPS'
-    data['zz.hdf5']='1Y3eFUb2gC6r1AGbcXQxLEBI39foO1etR'
-    data['single_top.hdf5']='1UwYbWh6czZ6MTdWW9wTMph-tK_FkttzO'
-    data['qcd.hdf5']='1J-97Viw5kKOlVZVHYmSFgZw4P8kJHAkG'
+    #data['data.hdf5']='1bWHUZxDflq_Utdbm86wASyfi-N5VMhtQ'
+    #data['ttbar.hdf5']='17T9eFz2znHpr9bms3b9GJ_4rMFRBmiRf'
+    #data['wjets.hdf5']='1G6-mklbUEg2Dd3uDLERODPx0cmH8Ogd-'
+    #data['dy.hdf5']='1PZqqlWKE6qdeA50mJU5z2jVZ5bT_CNc7'
+    #data['ww.hdf5']='1wGxJ1SKGtUh3n7tqWJ12Sv-pBHjlmrqi'
+    #data['wz.hdf5']='1It4tQMhz_t-9dfPylaa1MMbvOg0gSqPS'
+    #data['zz.hdf5']='1Y3eFUb2gC6r1AGbcXQxLEBI39foO1etR'
+    #data['single_top.hdf5']='1UwYbWh6czZ6MTdWW9wTMph-tK_FkttzO'
+    #data['qcd.hdf5']='1J-97Viw5kKOlVZVHYmSFgZw4P8kJHAkG'
+    
     data['dimuons_100k.hdf5']='13gCId3e815LUBsQvGz-MQHInAp8Fz8n2'
     data['dimuons_1000_collisions.hdf5']='1fU8bMs1ZOmTFePkmS_LmYZq9KfaqJG1z'
     data['small_cms_test_file.hdf5']='1GlysdzCZ3dpW2YXoJqqjte5TBOIwsVv2'
